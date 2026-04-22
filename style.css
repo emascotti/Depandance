@@ -640,6 +640,7 @@ video:not(.gallery-video):not(#lightbox-video) {
 		height: 100%;
 		flex-shrink: 0;
 		object-fit: cover;
+		border-radius:8px;
 	}
 				.servizio {
 		font-size: 14px;
