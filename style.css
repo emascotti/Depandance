@@ -160,7 +160,7 @@ video:not(.gallery-video):not(#lightbox-video) {
 	overflow: hidden;
 	margin: 30px auto;
 	max-width: 100%;
-	border-radius: 16px;
+	border-radius: 160px;
 	border: 1px solid #ddd;
 	box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 	background: white;
