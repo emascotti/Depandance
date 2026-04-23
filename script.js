@@ -156,35 +156,58 @@ document.addEventListener("DOMContentLoaded", function () {
   // EMAILJS INIT
   emailjs.init("vnk-4DyEAXegl_09R");
 
-  // MODAL
+  // ELEMENTI MODAL
   const modal = document.getElementById("contactModal");
   const btn = document.getElementById("openForm");
   const close = document.querySelector(".close");
+  const form = document.getElementById("contactForm");
+  const successMsg = document.getElementById("successMessage");
 
-  btn.onclick = () => modal.classList.add("active");
-  close.onclick = () => modal.classList.remove("active");
+  // APRI MODAL
+  btn.addEventListener("click", () => {
+    modal.style.display = "flex";
+  });
 
-  window.onclick = (e) => {
-	if (e.target == modal) modal.style.display = "none";
-  };
+  // CHIUDI MODAL (X)
+  close.addEventListener("click", () => {
+    modal.style.display = "none";
+  });
 
-  // FORM SUBMIT
-  document.getElementById("contactForm").addEventListener("submit", function(e) {
-	e.preventDefault();
+  // CHIUDI CLICCANDO FUORI
+  window.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      modal.style.display = "none";
+    }
+  });
 
-	emailjs.sendForm(
-	  "service_54iva8h",
-	  "template_54aey3u",
-	  this
-	).then(() => {
-	  alert("Email inviata!");
-	  this.reset();
-	  modal.style.display = "none";
-	}, (error) => {
-	  alert("Errore invio");
-	  console.log(error);
-	});
+  // INVIO FORM
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
 
+    emailjs.sendForm(
+      "service_54iva8h",
+      "template_54aey3u",
+      this
+    )
+    .then(() => {
+
+      // mostra messaggio successo
+      successMsg.style.display = "block";
+
+      // reset form
+      form.reset();
+
+      // chiudi dopo 2 sec
+      setTimeout(() => {
+        successMsg.style.display = "none";
+        modal.style.display = "none";
+      }, 2000);
+
+    })
+    .catch((error) => {
+      console.log("Errore invio:", error);
+      alert("Errore invio email");
+    });
   });
 
 });
