@@ -1,6 +1,6 @@
 
 const gallery = document.querySelector('.galleria');
-let speed = window.innerWidth <= 768 ? 0.6 : 0.5;
+let speed = window.innerWidth <= 768 ? 0.5 : 0.5;
 let pos = 0;
 let paused = false;
 
@@ -161,8 +161,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const btn = document.getElementById("openForm");
   const close = document.querySelector(".close");
 
-  btn.onclick = () => modal.style.display = "block";
-  close.onclick = () => modal.style.display = "none";
+  btn.onclick = () => modal.classList.add("active");
+  close.onclick = () => modal.classList.remove("active");
 
   window.onclick = (e) => {
 	if (e.target == modal) modal.style.display = "none";
