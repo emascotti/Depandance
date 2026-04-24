@@ -264,24 +264,35 @@ video:not(.gallery-video):not(#lightbox-video) {
 }
 
 .servizi {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	gap: 20px;
-	margin: 30px 0;
-	color: #E6E4E1;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  margin: 30px 0;
+  color: #E6E4E1;
 }
 
+/* singolo blocco servizio */
 .servizio {
-	display: flex;
-	align-items: center;
-	gap: 10px;
-	font-size: 10px;
+  flex: 1;
+  text-align: center;
+  padding: 10px 5px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
 }
 
+/* icona sopra */
 .servizio img {
-	width: 28px;
-	height: 28px;
+  width: 20px;
+  height: 20px;
+}
+
+/* separatore verticale */
+.servizio:not(:last-child) {
+  border-right: 1px solid rgba(255,255,255,0.2);
 }
 /* Sezione contatti */
 
@@ -352,12 +363,10 @@ video:not(.gallery-video):not(#lightbox-video) {
 	width: 100%;
 	height: 70px;
 	background: #0f2a44;
-
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-
-	z-index: 1;
+	z-index: 9999;
 
 }
 .logo {
@@ -383,7 +392,7 @@ video:not(.gallery-video):not(#lightbox-video) {
   margin: 20px auto;  /* centrato */
   box-sizing: border-box;
 
-  background: #6b3e2e;
+  background: #9B5638;
   color: white;
   padding: 16px;
   font-size: 18px;
@@ -507,6 +516,74 @@ video:not(.gallery-video):not(#lightbox-video) {
 .close:hover {
   color: #000;
 }
+.posizione-section {
+  background: #0f2a44;
+  color: white;
+  padding: 20px 1px;
+  text-align: center;
+}
+
+.posizione-section h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+
+.posizione-line {
+  width: 100%;
+  height: 2px;
+  background: rgba(255,255,255,0.6);
+  margin: 0 auto 30px auto;
+}
+
+.posizione-grid {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+.pos-item {
+  flex: 1;
+  min-width: 220px;
+  max-width: 260px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px;
+  border-left: 2px solid rgba(255,255,255,0.2);
+}
+
+.pos-item:first-child {
+  border-left: none;
+}
+
+.pos-item img {
+  width: 32px;
+  height: 32px;
+}
+
+.pos-item strong {
+  display: block;
+  font-size: 16px;
+}
+
+.pos-item span {
+  font-size: 13px;
+  opacity: 0.9;
+}
+.posizione-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.posizione-header img {
+  width: 32px;
+  height: 32px;
+}
 
 @media (max-width: 768px) {
 	.topbar {
@@ -607,6 +684,39 @@ video:not(.gallery-video):not(#lightbox-video) {
 		height: 100%;
 		width: auto;
 	}
+	.info-card {
+	  border-radius: 0;
+	  margin: 0;
+	}
+
+	.info-item span {
+	  font-size: 14px;
+	}
+	  .posizione-grid {
+		flex-wrap: nowrap;          /* mai a capo */
+		justify-content: space-between;
+		gap: 10px;
+	  }
+
+	  .pos-item { 
+		flex: 1;                    /* tutti uguali */
+		min-width: 0;              /* fondamentale per evitare overflow */
+		padding: 10px 5px;
+	  }
+
+	  .pos-item img {
+		width: 24px;
+		height: 24px;
+	  }
+
+	  .pos-item strong {
+		font-size: 14px;
+	  }
+
+	  .pos-item span {
+		font-size: 11px;
+		line-height: 1.2;
+	  }
 }
 
 @media (max-width: 480px) {
@@ -742,6 +852,10 @@ video:not(.gallery-video):not(#lightbox-video) {
 		margin: 0 20px;
 		font-size: 18px;		
 	}
+	.posizione-header h3 {
+		font-size: 16px;  /* o anche 14px se vuoi più compatto */
+		margin: 0;
+	}
 	.servizio {
 	display: flex;
 	align-items: center;
@@ -755,4 +869,55 @@ video:not(.gallery-video):not(#lightbox-video) {
 	#openForm {
 		border-radius: 0px;
 	}
+	.info-card {
+	  border-radius: 0;
+	  margin: 0;
+	}
+
+	.info-item span {
+	  font-size: 14px;
+	}
+	  .posizione-grid {
+		display: flex;
+		flex-wrap: nowrap;
+		justify-content: space-between;
+		gap: 6px;
+	  }
+
+	  .pos-item {
+		flex: 1;
+		min-width: 0;
+		padding: 8px 4px;
+
+		display: flex;
+		align-items: center;   /* icona + testo sulla stessa riga */
+		text-align: left;
+		gap: 6px;
+	  }
+
+	  .pos-item img {
+		width: 20px;
+		height: 20px;
+		flex-shrink: 0;
+	  }
+
+	  .pos-item div {
+		min-width: 0;
+	  }
+
+	  .pos-item strong {
+		display: block;
+		font-size: 13px;
+		line-height: 1.1;
+	  }
+
+	  .pos-sub {
+		font-size: 11px;
+		white-space: nowrap;
+	  }
+
+	  .break-mobile {
+		display: block;
+		font-size: 10px;
+	  }
 }
