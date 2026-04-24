@@ -1,6 +1,6 @@
 
 const gallery = document.querySelector('.galleria');
-let speed = window.innerWidth <= 768 ? 0.35 : 0.5;
+let speed = window.innerWidth <= 768 ? 0.4 : 0.5;
 let pos = 0;
 let paused = false;
 
