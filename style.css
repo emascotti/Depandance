@@ -19,6 +19,25 @@ body {
 :root {
 	--brown: #6b3e2e;
 }
+.chi-siamo-flex {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.chi-siamo-flex .foto {
+  flex: 1;
+}
+
+.chi-siamo-flex .foto img {
+  width: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.chi-siamo-flex .testo {
+  flex: 1;
+}
 
 .galleria-container,
 .contatti {
@@ -586,6 +605,13 @@ video:not(.gallery-video):not(#lightbox-video) {
 }
 
 @media (max-width: 768px) {
+	.chi-siamo-flex {
+	  flex-direction: column;
+	}
+
+	.chi-siamo-flex .foto {
+	  display: none; /* nasconde la foto desktop */
+	}
 	.topbar {
 		flex-direction: column;    
 		height: auto;              

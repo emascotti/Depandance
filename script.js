@@ -141,16 +141,7 @@ function handleSwipe() {
 	openLightbox(currentIndex);
 }
 
-const modal = document.getElementById("contactModal");
-const btn = document.getElementById("openForm");
-const close = document.querySelector(".close");
 
-btn.onclick = () => modal.style.display = "block";
-close.onclick = () => modal.style.display = "none";
-
-window.onclick = (e) => {
-	if (e.target == modal) modal.style.display = "none";
-};
 document.addEventListener("DOMContentLoaded", function () {
 
   // EMAILJS INIT
