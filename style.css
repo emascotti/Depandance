@@ -762,10 +762,12 @@ video:not(.gallery-video):not(#lightbox-video) {
 		font-size: 18px;
 	}
 	.commento_1-mobile {
+		width: 95%;
 		display: block;
 		color: white;
 		text-align: justify;
 		font-size: 16px;
+		margin-left: 5px;
 	}
 	.contattaci {
 		text-align: center;
