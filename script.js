@@ -1,68 +1,70 @@
 document.addEventListener("DOMContentLoaded", function () {
 
   /* =========================
-     LIGHTBOX ELEMENTI
+     ELEMENTI LIGHTBOX
   ========================= */
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightbox-img');
   const lightboxVideo = document.getElementById('lightbox-video');
   const lightboxCaption = document.getElementById('lightbox-caption');
-  const closeBtn = document.getElementsByClassName('lightbox-close')[0];
-  const prevBtn = document.getElementsByClassName('lightbox-prev')[0];
-  const nextBtn = document.getElementsByClassName('lightbox-next')[0];
+
+  const closeBtn = document.querySelector('.lightbox-close');
+  const prevBtn = document.querySelector('.lightbox-prev');
+  const nextBtn = document.querySelector('.lightbox-next');
 
   let items = [];
   let currentIndex = 0;
 
   /* =========================
-     FUNZIONE LIGHTBOX
+     OPEN LIGHTBOX
   ========================= */
   function openLightbox(index) {
     currentIndex = index;
 
-    const element = items[index];
-    document.body.style.overflow = 'hidden';
+    const el = items[index];
 
-    lightboxImg.style.display = 'none';
-    lightboxVideo.style.display = 'none';
+    document.body.style.overflow = "hidden";
+
+    lightboxImg.style.display = "none";
+    lightboxVideo.style.display = "none";
     lightboxVideo.pause();
     lightboxVideo.currentTime = 0;
 
-    if (element.tagName === 'IMG') {
-      lightboxImg.src = element.src;
-      lightboxImg.style.display = 'block';
-      lightboxCaption.textContent = element.alt || '';
+    if (el.tagName === "IMG") {
+      lightboxImg.src = el.src;
+      lightboxImg.style.display = "block";
+      lightboxCaption.textContent = el.alt || "";
     } else {
-      const src = element.querySelector('source').src;
+      const src = el.querySelector("source").src;
       lightboxVideo.src = src;
-      lightboxVideo.style.display = 'block';
+      lightboxVideo.style.display = "block";
       lightboxVideo.play();
       lightboxCaption.textContent = "Video";
     }
 
-    lightbox.classList.add('show');
+    lightbox.classList.add("show");
   }
 
   /* =========================
-     NAV LIGHTBOX
+     LIGHTBOX NAV
   ========================= */
-  function setupLightboxEvents() {
+  function setupLightbox() {
 
-    items.forEach((el, idx) => {
-      el.addEventListener('click', () => openLightbox(idx));
+    items.forEach((el, i) => {
+      el.addEventListener("click", () => openLightbox(i));
     });
 
     closeBtn.onclick = () => {
-      lightbox.classList.remove('show');
+      lightbox.classList.remove("show");
       lightboxVideo.pause();
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     };
 
     lightbox.onclick = (e) => {
       if (e.target === lightbox) {
-        lightbox.classList.remove('show');
+        lightbox.classList.remove("show");
         lightboxVideo.pause();
-        document.body.style.overflow = '';
+        document.body.style.overflow = "";
       }
     };
 
@@ -76,32 +78,31 @@ document.addEventListener("DOMContentLoaded", function () {
       openLightbox(currentIndex);
     };
 
-    document.addEventListener('keydown', (e) => {
-      if (!lightbox.classList.contains('show')) return;
+    document.addEventListener("keydown", (e) => {
+      if (!lightbox.classList.contains("show")) return;
 
-      if (e.key === 'ArrowLeft') {
+      if (e.key === "ArrowLeft") {
         currentIndex = (currentIndex - 1 + items.length) % items.length;
         openLightbox(currentIndex);
       }
 
-      if (e.key === 'ArrowRight') {
+      if (e.key === "ArrowRight") {
         currentIndex = (currentIndex + 1) % items.length;
         openLightbox(currentIndex);
       }
 
-      if (e.key === 'Escape') {
-        lightbox.classList.remove('show');
+      if (e.key === "Escape") {
+        lightbox.classList.remove("show");
         lightboxVideo.pause();
-        document.body.style.overflow = '';
+        document.body.style.overflow = "";
       }
     });
-
   }
 
   /* =========================
-     GALLERIA SCROLL INFINITO
+     SCROLL INFINITO GALLERY
   ========================= */
-  function initGalleryAnimation() {
+  function startGallery() {
 
     const gallery = document.querySelector('.galleria');
 
@@ -109,10 +110,9 @@ document.addEventListener("DOMContentLoaded", function () {
     let pos = 0;
     let paused = false;
 
-    const clone = Array.from(gallery.children)
-      .map(el => el.cloneNode(true));
-
-    clone.forEach(el => gallery.appendChild(el));
+    /* CLONE PER LOOP */
+    const clones = Array.from(gallery.children).map(el => el.cloneNode(true));
+    clones.forEach(el => gallery.appendChild(el));
 
     const galleryWidth = gallery.scrollWidth / 2;
 
@@ -125,14 +125,14 @@ document.addEventListener("DOMContentLoaded", function () {
       requestAnimationFrame(animate);
     }
 
-    gallery.addEventListener('mouseenter', () => paused = true);
-    gallery.addEventListener('mouseleave', () => paused = false);
+    gallery.addEventListener("mouseenter", () => paused = true);
+    gallery.addEventListener("mouseleave", () => paused = false);
 
     animate();
   }
 
   /* =========================
-     CARICAMENTO GALLERY.JSON
+     CARICAMENTO DA GALLERY.JSON
   ========================= */
   fetch("gallery.json")
     .then(res => res.json())
@@ -167,18 +167,17 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       });
 
-      /* IMPORTANTISSIMO:
-         dopo aver creato la galleria inizializzo tutto */
+      /* IMPORTANTISSIMO: dopo creazione DOM */
       items = Array.from(document.querySelectorAll('.galleria img, .galleria video'));
 
-      setupLightboxEvents();
-      initGalleryAnimation();
+      setupLightbox();
+      startGallery();
 
     })
     .catch(err => console.error("Errore gallery:", err));
 
   /* =========================
-     EMAIL MODAL (TUO CODICE)
+     MODAL CONTATTI (EMAILJS)
   ========================= */
   emailjs.init("vnk-4DyEAXegl_09R");
 
