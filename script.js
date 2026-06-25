@@ -134,7 +134,7 @@ document.addEventListener("DOMContentLoaded", function () {
   /* =========================
      CARICAMENTO DA GALLERY.JSON
   ========================= */
-  fetch("/gallery.json")
+  fetch("gallery.json")
     .then(res => res.json())
     .then(files => {
 
