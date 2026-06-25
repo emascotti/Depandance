@@ -3,7 +3,7 @@ name: Generate Gallery
 on:
   push:
     paths:
-      - 'Foto/**'
+      - 'Foto/gallery/**'
 
 jobs:
   build-gallery:
