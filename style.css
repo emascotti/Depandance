@@ -195,6 +195,7 @@ video:not(.gallery-video):not(#lightbox-video) {
 	border: 1px solid #ddd;
 	box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 	background: white;
+	touch-action: pan-y;
 }
 
 .galleria {
