@@ -175,6 +175,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
     })
     .catch(err => console.error("Errore gallery:", err));
+  let startX = 0;
+  let endX = 0;
+  
+  lightbox.addEventListener("touchstart", (e) => {
+    startX = e.changedTouches[0].clientX;
+  }, { passive: true });
+  
+  lightbox.addEventListener("touchend", (e) => {
+    endX = e.changedTouches[0].clientX;
+  
+    const diff = startX - endX;
+  
+    // filtro per evitare swipe involontari
+    if (Math.abs(diff) < 50) return;
+  
+    if (diff > 0) {
+      // swipe sinistra → prossimo
+      currentIndex = (currentIndex + 1) % items.length;
+    } else {
+      // swipe destra → precedente
+      currentIndex = (currentIndex - 1 + items.length) % items.length;
+    }
+  
+    openLightbox(currentIndex);
+  }, { passive: true });
 
   /* =========================
      MODAL CONTATTI (EMAILJS)
