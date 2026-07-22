@@ -146,10 +146,29 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (["jpg", "jpeg", "png", "webp"].includes(ext)) {
 
-          const img = document.createElement("img");
-          img.src = file;
-          img.alt = "";
-          gallery.appendChild(img);
+         const wrapper = document.createElement("div");
+        wrapper.className = "gallery-item";
+        
+        const bg = document.createElement("div");
+        bg.className = "gallery-bg";
+        bg.style.backgroundImage = `url('${file}')`;
+        
+        const img = document.createElement("img");
+        img.src = file;
+        img.alt = "";
+        
+        img.onload = function () {
+        
+            if (this.naturalHeight > this.naturalWidth) {
+                wrapper.classList.add("vertical");
+            }
+        
+        };
+        
+        wrapper.appendChild(bg);
+        wrapper.appendChild(img);
+        
+        gallery.appendChild(wrapper);
 
         } else if (["mp4", "webm"].includes(ext)) {
 
