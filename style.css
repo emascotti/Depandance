@@ -202,14 +202,53 @@ video:not(.gallery-video):not(#lightbox-video) {
 	width: max-content; /* importante per scroll continuo */
 }
 
-.galleria img,
-.gallery-video {
-	height: 220px;
-	width: auto;
-	aspect-ratio: 4 / 3;
-	object-fit: contain;
-	flex-shrink: 0;
+.gallery-item{
+    position:relative;
+    height:220px;
+    flex-shrink:0;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
 
+.gallery-bg{
+    position:absolute;
+    inset:0;
+
+    background-size:cover;
+    background-position:center;
+
+    filter:blur(18px);
+    transform:scale(1.25);
+
+    opacity:0;
+    transition:.3s;
+
+    z-index:1;
+}
+
+.gallery-item.vertical .gallery-bg{
+    opacity:1;
+}
+
+.gallery-item img{
+    position:relative;
+    z-index:2;
+
+    display:block;
+
+    height:100%;
+    width:auto;
+
+    object-fit:contain;
+}
+
+.gallery-video{
+    height:220px;
+    width:auto;
+    object-fit:contain;
+    flex-shrink:0;
 }
 
 .galleria img:hover {
