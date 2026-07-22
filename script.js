@@ -111,7 +111,9 @@ document.addEventListener("DOMContentLoaded", function () {
     let paused = false;
 
     /* CLONE PER LOOP */
-    const clones = Array.from(gallery.children).map(el => el.cloneNode(true));
+    const clones = Array.from(gallery.children).map(el => {
+      return el.cloneNode(true);
+  });
     clones.forEach(el => gallery.appendChild(el));
 
     const galleryWidth = gallery.scrollWidth / 2;
@@ -187,7 +189,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
 
       /* IMPORTANTISSIMO: dopo creazione DOM */
-      items = Array.from(document.querySelectorAll('.galleria img, .galleria video'));
+     items = Array.from(document.querySelectorAll('.gallery-item img, .galleria video'));
 
       setupLightbox();
       startGallery();
