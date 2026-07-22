@@ -204,9 +204,10 @@ video:not(.gallery-video):not(#lightbox-video) {
 
 .galleria img,
 .gallery-video {
-	width: 250px;
+	height: 220px;
+	width: auto;
 	aspect-ratio: 4 / 3;
-	object-fit: cover;
+	object-fit: contain;
 	flex-shrink: 0;
 
 }
